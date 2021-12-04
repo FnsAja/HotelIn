@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Hotel Inn</string>
+    <string name="ex_name">Hilto Garden Inn Palo Alto</string>
+    <string name="ex_address">4216 El Camino Real, Palo Alto, California, 94306, USA</string>
+    <string name="ex_price">Rp. 1,636,014 - Rp. 3,000,000 / Night</string>
+    <string name="ex_rate">5.00</string>
+    <string name="ex_facilities">A/C, Restaurant, Swimming Pool, 24-Hour Front Desk, Parking, Elevator, Wi-Fi</string>
+    <string name="ex_ava_deluxe">3 rooms</string>
+    <string name="ex_ava_fam">2 rooms</string>
+    <string name="ex_fac_deluxe">42.0 sqm, Free Breakfast, Free WiFi, Non-smoking, 1 King Bed</string>
+    <string name="ex_fac_fam">42.0 sqm, Free Breakfast, Free WiFi, Non-smoking, 1 Double Bed or 2 Single Bed</string>
+</resources>

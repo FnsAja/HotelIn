@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="vertical"
+    tools:context=".DetailActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:logo="@drawable/logo"
+        android:background="@color/white"
+        android:elevation="5dp"/>
+
+    <ScrollView
+        android:layout_below="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/foto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/example" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/foto"
+                android:orientation="vertical"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp">
+
+                <TextView
+                    android:id="@+id/textViewNama"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/josefin_sans_bold"
+                    android:text="@string/ex_name"
+                    android:textColor="@color/tosca"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="10dp"/>
+
+                //deskripsi alamat
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_baseline_location_on_24"
+                        android:layout_marginEnd="10dp"
+                        android:layout_gravity="center"/>
+                    <TextView
+                        android:id="@+id/textViewAddress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/ex_address"
+                        android:textColor="@color/green"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/josefin_sans_bold"/>
+                </LinearLayout>
+
+                //deskripsi harga
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/tag"
+                        android:layout_marginEnd="10dp"
+                        android:layout_gravity="center"/>
+                    <TextView
+                        android:id="@+id/textViewPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="@string/ex_price"
+                        android:textColor="@color/red"
+                        android:textSize="16sp"/>
+                </LinearLayout>
+
+                //deskripsi rating
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_baseline_star_rate_24"
+                        android:layout_marginEnd="10dp"
+                        android:layout_gravity="center"/>
+                    <TextView
+                        android:id="@+id/textViewRating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/ex_rate"
+                        android:textColor="@color/yellow"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/josefin_sans_bold"/>
+                </LinearLayout>
+
+                //bagian Fasilitas
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Facilities:"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:textColor="@color/dark"/>
+                <TextView
+                    android:id="@+id/textViewFac"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat"
+                    android:textColor="@color/grey"
+                    android:textSize="14sp"
+                    android:text="@string/ex_facilities"
+                    android:layout_marginBottom="10dp"/>
+
+                //bagian available room
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Available Room:"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:textColor="@color/dark"/>
+                //deluxe
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Deluxe Room"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:textColor="@color/dark"/>
+                //ava deluxe
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Availability:"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:textColor="@color/dark"
+                    android:layout_marginStart="15dp"/>
+                <TextView
+                    android:id="@+id/textViewAvaDeluxe"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat"
+                    android:textSize="14sp"
+                    android:textColor="@color/grey"
+                    android:text="@string/ex_ava_deluxe"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginBottom="10dp"/>
+                //fac deluxe
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Facilities:"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:textColor="@color/dark"
+                    android:layout_marginStart="15dp"/>
+                <TextView
+                    android:id="@+id/textViewFacDeluxe"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat"
+                    android:textSize="14sp"
+                    android:textColor="@color/grey"
+                    android:text="@string/ex_fac_deluxe"
+                    android:layout_marginStart="15dp"/>
+
+                //family
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Family Room"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:textColor="@color/dark"/>
+                //ava fam
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Availability:"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:textColor="@color/dark"
+                    android:layout_marginStart="15dp"/>
+                <TextView
+                    android:id="@+id/textViewAvaFam"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat"
+                    android:textSize="14sp"
+                    android:textColor="@color/grey"
+                    android:text="@string/ex_ava_fam"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginBottom="10dp"/>
+                //fac deluxe
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Facilities:"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:textColor="@color/dark"
+                    android:layout_marginStart="15dp"/>
+                <TextView
+                    android:id="@+id/textViewFacFam"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat"
+                    android:textSize="14sp"
+                    android:textColor="@color/grey"
+                    android:text="@string/ex_fac_fam"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginBottom="20dp"/>
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>
