@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 04, 2021 at 06:00 AM
--- Server version: 10.4.18-MariaDB
--- PHP Version: 8.0.3
+-- Generation Time: Dec 21, 2021 at 03:46 PM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -57,6 +57,31 @@ INSERT INTO `tabelhotel` (`id`, `nama`, `harga`, `bintang`, `alamat`, `fasilitas
 (9, 'The Dharmawangsa Jakarta', 'Rp 2.500.000 - Rp 4.500.000', '4.00', 'Jalan Brawijaya No. 26, Kebayoran Baru, Kebayoran Baru, Dharmawangsa, Jakarta, Indonesia, 12160', 'A/C, Restaurant, Swimming Pool, 24-Hour Front Desk, Parking, Wi-Fi', 3, '66.0 sqm, Without Breakfast, Free WiFi, Non-smoking, 1 King Bed', 5, '107.0 sqm, Without Breakfast, Free WiFi, Non-smoking, 1 King Bed', 'https://ik.imagekit.io/tvlk/apr-asset/dgXfoyh24ryQLRcGq00cIdKHRmotrWLNlvG-TxlcLxGkiDwaUSggleJNPRgIHCX6/hotel/asset/10018774-c014c9705b2b8561cad6deb50da034ec.jpeg?_src=imagekit&tr=c-at_max,h-488,q-40,w-768'),
 (10, 'JW Marriott Hotel Jakarta', 'Rp 2.422.420 - Rp 5.087.082', '4.00', 'Jalan Dr. Ide Gde Anak Agung Gde Agung, Kav. E. 1.2, No. 1 & 2, Mega Kuningan , Kuningan, Setiabudi, Jakarta, Indonesia, 12950', 'A/C, Restaurant, Swimming Pool, 24-Hour Front Desk, Parking, Elevator, Wi-Fi', 5, '452-sq-foot room with city views, Without Breakfast, Free WiFi, Non-smoking, 1 King Bed', 5, '904 sq feet, Free Breakfast, Free WiFi, Non-smoking, 1 King Bed', 'https://ik.imagekit.io/tvlk/apr-asset/dgXfoyh24ryQLRcGq00cIdKHRmotrWLNlvG-TxlcLxGkiDwaUSggleJNPRgIHCX6/hotel/asset/10022535-4562ec5c43cf5ffb675475a8534340df.jpeg?tr=q-40,c-at_max,w-740,h-500&_src=imagekit');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `fullname` text NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `password` text NOT NULL,
+  `email` varchar(300) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `fullname`, `username`, `password`, `email`) VALUES
+(1, 'Michael Alfonso', 'mekel', 'mekel', 'michaelalfonso95@gmail.com'),
+(2, 'Michael A', 'michael', 'aaaaa', 'mekel@gmail.com'),
+(3, 'Filbert Amadea', 'file', '12345', 'file@gmail.com'),
+(4, 'Afiyah Salsa', 'vivi', '12345', 'afiyah@email.co.id'),
+(5, 'Joni', 'joni', '11111', 'joni@gmail.com');
+
 --
 -- Indexes for dumped tables
 --
@@ -68,6 +93,14 @@ ALTER TABLE `tabelhotel`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD UNIQUE KEY `username` (`username`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -76,6 +109,12 @@ ALTER TABLE `tabelhotel`
 --
 ALTER TABLE `tabelhotel`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
