@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,80 +25,96 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LoginActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity {
 
     ProgressDialog pDialog;
-    Button btn_login;
-    EditText txt_username, txt_password;
+    Button btn_register;
+    EditText txt_fullname, txt_email, txt_username, txt_password, txt_confirm_password;
     Intent intent;
 
     int success;
     ConnectivityManager conMgr;
-    private String url = Config.loginPhp;
-    private static final String TAG = LoginActivity.class.getSimpleName();
+
+    private String url = Config.registerPhp;
+
+    private static final String TAG = RegisterActivity.class.getSimpleName();
 
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_MESSAGE = "message";
-    public final static String TAG_USERNAME = "username";
-    public final static String TAG_ID = "id";
 
     String tag_json_obj = "json_obj_req";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_register);
 
         conMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        btn_login = (Button) findViewById(R.id.login_btn_login);
-        txt_username = (EditText) findViewById(R.id.login_uname_text);
-        txt_password = (EditText) findViewById(R.id.login_pass_text);
+        {
+            if (conMgr.getActiveNetworkInfo() != null
+                    && conMgr.getActiveNetworkInfo().isAvailable()
+                    && conMgr.getActiveNetworkInfo().isConnected()) {
+            } else {
+                Toast.makeText(getApplicationContext(), "No Internet Connection",
+                        Toast.LENGTH_LONG).show();
+            }
+        }
 
-        btn_login.setOnClickListener(view -> {
+        btn_register = (Button) findViewById(R.id.regist_btn_register);
+        txt_fullname = (EditText) findViewById(R.id.regist_fullname_text);
+        txt_username = (EditText) findViewById(R.id.regist_uname_text);
+        txt_email = (EditText) findViewById(R.id.regist_email_text);
+        txt_password = (EditText) findViewById(R.id.regist_pass_text);
+        txt_confirm_password = (EditText) findViewById(R.id.regist_confpass_text);
+
+        btn_register.setOnClickListener(view -> {
             String username = txt_username.getText().toString();
             String password = txt_password.getText().toString();
+            String confirm_password = txt_confirm_password.getText().toString();
+            String email = txt_email.getText().toString();
+            String fullname = txt_fullname.getText().toString();
 
-            if (username.trim().length() > 0 && password.trim().length() > 0) {
-                if (conMgr.getActiveNetworkInfo() != null
-                        && conMgr.getActiveNetworkInfo().isAvailable()
-                        && conMgr.getActiveNetworkInfo().isConnected()) {
-                    checkLogin(username, password);
-                } else {
-                    Toast.makeText(getApplicationContext() ,"No Internet Connection", Toast.LENGTH_LONG).show();
-                }
+            if (conMgr.getActiveNetworkInfo() != null
+                    && conMgr.getActiveNetworkInfo().isAvailable()
+                    && conMgr.getActiveNetworkInfo().isConnected()) {
+                checkRegister(username, password, confirm_password, email, fullname);
             } else {
-                // Prompt user to enter credentials
-                Toast.makeText(getApplicationContext() ,"Username dan Password tidak boleh kosong", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();
             }
+
         });
     }
 
-    private void checkLogin(final String username, final String password) {
+    private void checkRegister(final String username, final String password, final String confirm_password, final String email, final String fullname) {
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
-        pDialog.setMessage("Logging in ...");
+        pDialog.setMessage("Register ...");
         showDialog();
 
         StringRequest strReq = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.e(TAG, "Login Response: " + response.toString());
+                Log.e(TAG, "Register Response: " + response.toString());
                 hideDialog();
+
                 try {
                     JSONObject jObj = new JSONObject(response);
                     success = jObj.getInt(TAG_SUCCESS);
 
                     // Check for error node in json
                     if (success == 1) {
-                        String username = jObj.getString(TAG_USERNAME);
-                        String id = jObj.getString(TAG_ID);
+                        Log.e("Successfully Register!", jObj.toString());
 
-                        Log.e("Successfully Login!", jObj.toString());
+                        Toast.makeText(getApplicationContext(),
+                                jObj.getString(TAG_MESSAGE), Toast.LENGTH_LONG).show();
 
-                        Toast.makeText(getApplicationContext(), jObj.getString(TAG_MESSAGE), Toast.LENGTH_LONG).show();
+                        txt_username.setText("");
+                        txt_password.setText("");
+                        txt_confirm_password.setText("");
+                        txt_fullname.setText("");
+                        txt_email.setText("");
 
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                        intent.putExtra(TAG_USERNAME, username);
+                        intent = new Intent(RegisterActivity.this, LoginActivity.class);
                         finish();
                         startActivity(intent);
                     } else {
@@ -123,13 +138,17 @@ public class LoginActivity extends AppCompatActivity {
 
                 hideDialog();
             }
-        }){
+        }) {
+
             @Override
             protected Map<String, String> getParams() {
                 // Posting parameters to login url
                 Map<String, String> params = new HashMap<String, String>();
+                params.put("fullname", fullname);
                 params.put("username", username);
+                params.put("email", email);
                 params.put("password", password);
+                params.put("confirm_password", confirm_password);
 
                 return params;
             }
@@ -151,7 +170,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onClick(View view) {
-        intent = new Intent(LoginActivity.this, RegisterActivity.class);
+        intent = new Intent(RegisterActivity.this, LoginActivity.class);
+        finish();
         startActivity(intent);
     }
 }
